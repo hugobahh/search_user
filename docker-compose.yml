@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  login:
+    container_name: search_user
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: search_user
+    environment:
+      PORT: 8080
+    deploy:
+      resources:
+        limits:
+          cpus: '.2'
+          memory: 100M
+        reservations:
+          cpus: '.2'
+          memory: 100M
+    restart: always
+    expose:
+      - "8080"
+    networks:
+      - service-platform-nginx-network
+networks:
+  service-platform-nginx-network:
+    external: true
